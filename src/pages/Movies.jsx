@@ -9,13 +9,24 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
 
+  //  при монтировании компонента, проверяем, есть ли сохраненный список фильмов в localStorage,
+  // и если есть, установливаем его в состояние
+  useEffect(() => {
+    const storedMovies = localStorage.getItem('movies');
+    if (storedMovies) {
+      setMovies(JSON.parse(storedMovies));
+    }
+  }, []);
+
   useEffect(() => {
     const fetchMovies = async () => {
       const moviesData = await fetchMoviesByKeyword(query);
+
       if (moviesData.length === 0) {
         return alert('No movies by your query');
       }
       setMovies(moviesData);
+      localStorage.setItem('movies', JSON.stringify(moviesData)); // сохраняем список фильмов в localStorage
     };
     if (query === '') {
       return;
