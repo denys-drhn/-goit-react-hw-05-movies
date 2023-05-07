@@ -1,4 +1,5 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import fetchMovieDetails from 'services/fetchMovieDetails';
 import css from './MovieDetails.module.css';
@@ -8,7 +9,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
-  const location = useLocation(); // для кноаки назад
+  const location = useLocation(); // для кнопки назад
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies'); // для кноаки назад
 
   useEffect(() => {
@@ -68,8 +69,9 @@ const MovieDetails = () => {
           </li>
         </ul>
       </div>
-
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
