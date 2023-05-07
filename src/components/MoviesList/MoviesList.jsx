@@ -20,11 +20,12 @@ const MoviesList = ({ movies, location }) => {
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
+      title: PropTypes.string,
+      original_title: PropTypes.string,
       id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      original_title: PropTypes.string.isRequired,
-    }).isRequired
+    })
   ).isRequired,
-  location: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
 };
+
 export default MoviesList;
