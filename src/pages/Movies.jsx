@@ -1,7 +1,8 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Searchbar from 'components/Searchbar/Searchbar';
 import fetchMoviesByKeyword from 'services/fetchMoviesByKeyword';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -30,16 +31,7 @@ const Movies = () => {
         <Searchbar onSubmit={handleFormSubmit} />
       </div>
 
-      <ul>
-        {movies.map(({ id, title }) => (
-          <li key={id}>
-            {/* {добавляю State} */}
-            <Link to={`/movies/${id}`} state={{ from: location }}>
-              {title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <MoviesList movies={movies} location={location} />
     </div>
   );
 };
