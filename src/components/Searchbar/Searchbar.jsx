@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-/* import PropTypes from 'prop-types'; */
+import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
 
 const Searchbar = ({ onSubmit }) => {
@@ -9,13 +9,15 @@ const Searchbar = ({ onSubmit }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   //   const movieName = searchParams.get('query');
-  //   console.log(movieName);
-  console.log(searchParams);
+  //  console.log(movieName);
+  //   console.log(searchParams);
+
   const handleChange = event => {
     setSearch(event.currentTarget.value.toLowerCase());
     // добавляем параметр поиска в строку запроса с условием
     if (event.currentTarget.value.toLowerCase() === '') {
       setSearchParams({});
+      localStorage.removeItem('movies'); // очистка localStorage
     } else {
       setSearchParams({ query: event.currentTarget.value.toLowerCase() });
     }
@@ -60,6 +62,10 @@ const Searchbar = ({ onSubmit }) => {
       </form>
     </div>
   );
+};
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Searchbar;
