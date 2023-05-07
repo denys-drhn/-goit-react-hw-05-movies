@@ -10,7 +10,7 @@ const Searchbar = ({ onSubmit }) => {
 
   //   const movieName = searchParams.get('query');
   //   console.log(movieName);
-  //   console.log(searchParams);
+  console.log(searchParams);
   const handleChange = event => {
     setSearch(event.currentTarget.value.toLowerCase());
     // добавляем параметр поиска в строку запроса с условием
