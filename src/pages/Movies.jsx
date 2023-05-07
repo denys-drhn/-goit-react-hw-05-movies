@@ -12,6 +12,9 @@ const Movies = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       const moviesData = await fetchMoviesByKeyword(query);
+      if (moviesData.length === 0) {
+        return alert('No movies by your query');
+      }
       setMovies(moviesData);
     };
     if (query === '') {
@@ -22,7 +25,7 @@ const Movies = () => {
 
   const handleFormSubmit = query => {
     setQuery(query);
-    //  setMovies([]);
+    setMovies([]); // для очистки массива фильмов перед выполнением нового поискового запроса
   };
 
   return (
