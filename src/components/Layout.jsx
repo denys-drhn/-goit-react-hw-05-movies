@@ -4,7 +4,7 @@ import css from './Layout.module.css';
 const Layout = () => {
   return (
     <div>
-      <header>
+      <header className={css.header}>
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/movies">Movies</NavLink>
