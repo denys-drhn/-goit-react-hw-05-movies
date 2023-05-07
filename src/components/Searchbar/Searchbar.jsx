@@ -8,7 +8,7 @@ const Searchbar = ({ onSubmit }) => {
   const [prevSearch, setPrevSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
-  //   const movieName = searchParams.get('query');
+  const movieName = searchParams.get('query');
   //   console.log(movieName);
   //   console.log(searchParams);
 
@@ -39,7 +39,7 @@ const Searchbar = ({ onSubmit }) => {
 
     //  console.log(searchParams);
 
-    onSubmit(search); // props из App которому мbl передаем state из єтого компонента в state App
+    onSubmit(movieName); // props из App которому мbl передаем state из єтого компонента в state App
     setPrevSearch(search);
     setSearch(''); // reset
   };
