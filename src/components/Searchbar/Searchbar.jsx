@@ -39,7 +39,7 @@ const Searchbar = ({ onSubmit }) => {
 
     //  console.log(searchParams);
 
-    onSubmit(search); // props из App которому мbl передаем state из єтого компонента в state App
+    onSubmit(searchParams); // props из App которому мbl передаем state из єтого компонента в state App
     setPrevSearch(search);
     setSearch(''); // reset
   };
