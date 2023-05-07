@@ -8,8 +8,8 @@ const Searchbar = ({ onSubmit }) => {
   const [prevSearch, setPrevSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
-  //   const movieName = searchParams.get('query');
-  //  console.log(movieName);
+  const movieName = searchParams.get('query');
+  console.log(movieName);
   //   console.log(searchParams);
 
   const handleChange = event => {
