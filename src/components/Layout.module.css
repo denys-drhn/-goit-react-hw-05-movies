@@ -1,4 +1,4 @@
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,11 +19,6 @@ nav a {
   font-weight: bold;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-}
-
-nav a.active {
-  color: green;
-  font-weight: bold;
 }
 
 nav a:hover {
