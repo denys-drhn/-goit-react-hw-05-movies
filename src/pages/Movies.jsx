@@ -14,16 +14,24 @@ const Movies = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const moviesData = await fetchMoviesByKeyword(query);
+      try {
+        const moviesData = await fetchMoviesByKeyword(query);
 
-      if (moviesData.length === 0) {
-        return alert('No movies by your query');
+        if (moviesData.length === 0) {
+          return alert('No movies by your query');
+        }
+
+        setMovies(moviesData);
+      } catch (error) {
+        console.error(error);
+        alert('Something went wrong');
       }
-      setMovies(moviesData);
     };
+
     if (query === '') {
       return;
     }
+
     fetchMovies();
   }, [query]);
 
