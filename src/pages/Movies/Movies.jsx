@@ -4,6 +4,7 @@ import Searchbar from 'components/Searchbar/Searchbar';
 import fetchMoviesByKeyword from 'services/fetchMoviesByKeyword';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { InfinitySpin } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -22,7 +23,9 @@ const Movies = () => {
         const moviesData = await fetchMoviesByKeyword(query);
 
         if (moviesData.length === 0) {
-          return alert('No movies by your query');
+          //  setMovies([]); // чистим страницу
+          toast.error('No movies by your query');
+          return;
         }
 
         setMovies(moviesData);
