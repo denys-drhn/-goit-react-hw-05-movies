@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import fetchMovieDetails from 'services/fetchMovieDetails';
 import css from './MovieDetails.module.css';
 import { useRef } from 'react';
+import IMAGE_DEFAULT_URL from '../../images/default-poster.jpg';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -38,7 +39,11 @@ const MovieDetails = () => {
       </button>
       <div className={css.content}>
         <img
-          src={IMAGES_BASE_URL + movie.poster_path}
+          src={
+            movie.poster_path
+              ? IMAGES_BASE_URL + movie.poster_path
+              : IMAGE_DEFAULT_URL
+          }
           alt={movie.title}
           className={css.image}
         />
