@@ -10,7 +10,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
 
   const location = useLocation(); // для кнопки назад
-  const backLinkLocationRef = useRef(location.state?.from ?? '/movies'); // для кноаки назад
+  const backLinkLocationRef = useRef(location.state?.from ?? '/'); // для кноаки назад
 
   useEffect(() => {
     const getMovieDetails = async () => {
