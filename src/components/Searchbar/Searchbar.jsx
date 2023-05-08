@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
 
 const Searchbar = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
   const [prevSearch, setPrevSearch] = useState('');
-  const [, setSearchParams] = useSearchParams();
 
   const handleChange = event => {
     setSearch(event.currentTarget.value.toLowerCase());
@@ -26,7 +24,6 @@ const Searchbar = ({ onSubmit }) => {
       return;
     }
 
-    setSearchParams({ query: search }); // записываем поисковый запрос в хук useSearchParams
     setPrevSearch(search);
     onSubmit(search); // передаем поисковый запрос в функцию onSubmit
     setSearch(''); // reset
