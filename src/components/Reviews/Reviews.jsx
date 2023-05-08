@@ -8,8 +8,12 @@ const Reviews = () => {
 
   useEffect(() => {
     const getMovieReviews = async () => {
-      const movieReviews = await fetchMovieReviews(movieId);
-      setReviews(movieReviews);
+      try {
+        const movieReviews = await fetchMovieReviews(movieId);
+        setReviews(movieReviews);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getMovieReviews();
