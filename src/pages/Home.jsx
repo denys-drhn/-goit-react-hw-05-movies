@@ -7,8 +7,12 @@ const Home = () => {
 
   useEffect(() => {
     const getMovies = async () => {
-      const data = await fetchTrendingMovies();
-      setMovies(data.results);
+      try {
+        const data = await fetchTrendingMovies();
+        setMovies(data.results);
+      } catch (error) {
+        console.error(error);
+      }
     };
     getMovies();
   }, []);
