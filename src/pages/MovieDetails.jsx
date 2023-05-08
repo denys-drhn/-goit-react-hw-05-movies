@@ -12,6 +12,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const location = useLocation(); // для кнопки назад
   const backLinkLocationRef = useRef(location.state?.from ?? '/'); // для кноаки назад
@@ -23,7 +24,7 @@ const MovieDetails = () => {
         setMovie(movieData);
         setIsLoading(false); // устанавливаем isLoading в false после получения данных
       } catch (error) {
-        console.error(error);
+        setError(error);
       }
     };
 
@@ -105,6 +106,7 @@ const MovieDetails = () => {
       >
         <Outlet />
       </Suspense>
+      {error && <p>Something went wrong...</p>}
     </div>
   );
 };
