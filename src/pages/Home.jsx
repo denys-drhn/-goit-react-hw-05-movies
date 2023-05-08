@@ -6,6 +6,7 @@ import { InfinitySpin } from 'react-loader-spinner';
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getMovies = async () => {
@@ -13,7 +14,7 @@ const Home = () => {
         const data = await fetchTrendingMovies();
         setMovies(data.results);
       } catch (error) {
-        console.error(error);
+        setError(error);
       } finally {
         setIsLoading(false);
       }
@@ -31,6 +32,7 @@ const Home = () => {
       ) : (
         <MoviesList movies={movies} />
       )}
+      {error && <p>Something went wrong...</p>}
     </div>
   );
 };
