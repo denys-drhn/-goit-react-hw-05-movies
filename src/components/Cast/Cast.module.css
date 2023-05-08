@@ -1,0 +1,16 @@
+.castList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.castImg {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+p {
+  margin: 10px 0;
+}
