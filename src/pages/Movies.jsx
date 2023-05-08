@@ -1,13 +1,14 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Searchbar from 'components/Searchbar/Searchbar';
 import fetchMoviesByKeyword from 'services/fetchMoviesByKeyword';
 import MoviesList from 'components/MoviesList/MoviesList';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query') || ''; // получаем значение поискового запроса из хука useSearchParams
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -24,12 +25,8 @@ const Movies = () => {
     fetchMovies();
   }, [query]);
 
-  //////////////
-
-  /////////////////////////////
-
   const handleFormSubmit = query => {
-    setQuery(query);
+    //  setSearchParams(query);
     setMovies([]); // для очистки массива фильмов перед выполнением нового поискового запроса
   };
 
@@ -38,12 +35,8 @@ const Movies = () => {
       <div>
         <Searchbar onSubmit={handleFormSubmit} />
       </div>
-      {movies.length > 0 ? (
-        <MoviesList movies={movies} location={location} />
-      ) : (
-        <p>No movies found</p>
-      )}
-      {/* <MoviesList movies={movies} location={location} /> */}
+
+      <MoviesList movies={movies} location={location} />
     </div>
   );
 };
