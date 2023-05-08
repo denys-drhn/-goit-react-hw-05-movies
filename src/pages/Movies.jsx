@@ -25,8 +25,7 @@ const Movies = () => {
     fetchMovies();
   }, [query]);
 
-  const handleFormSubmit = query => {
-    //  setSearchParams(query);
+  const handleFormSubmit = () => {
     setMovies([]); // для очистки массива фильмов перед выполнением нового поискового запроса
   };
 
