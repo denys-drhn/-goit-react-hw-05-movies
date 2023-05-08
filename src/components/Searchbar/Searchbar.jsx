@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
+import { toast } from 'react-toastify';
 
 const Searchbar = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
@@ -14,12 +15,12 @@ const Searchbar = ({ onSubmit }) => {
     event.preventDefault();
     if (search.trim() === '') {
       // если строка пустая и мbl нажали кнопку поиска
-      alert('Please, fill in the input field');
+      toast.info('Please, fill in the input field');
       return;
     }
     // проверка на одинаковое слово
     if (search === prevSearch) {
-      alert('Same request');
+      toast.info('Same request');
       setSearch('');
       return;
     }
