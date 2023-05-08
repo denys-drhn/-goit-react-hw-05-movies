@@ -1,12 +1,11 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { ProgressBar } from 'react-loader-spinner';
-import css from './Layout.module.css';
 
 const Layout = () => {
   return (
     <div>
-      <header className={css.header}>
+      <header>
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/movies">Movies</NavLink>
