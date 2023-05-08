@@ -6,7 +6,7 @@ import css from './Searchbar.module.css';
 const Searchbar = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
   const [prevSearch, setPrevSearch] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   //   const movieName = searchParams.get('query');
 
