@@ -17,7 +17,6 @@ const Searchbar = ({ onSubmit }) => {
     // добавляем параметр поиска в строку запроса с условием
     if (event.currentTarget.value.toLowerCase() === '') {
       setSearchParams({});
-      localStorage.removeItem('movies'); // очистка localStorage
     } else {
       setSearchParams({ query: event.currentTarget.value.toLowerCase() });
     }
