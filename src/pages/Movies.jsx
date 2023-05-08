@@ -9,15 +9,6 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
 
-  //  при монтировании компонента, проверяем, есть ли сохраненный список фильмов в localStorage,
-  // и если есть, установливаем его в состояние
-  useEffect(() => {
-    const storedMovies = localStorage.getItem('movies');
-    if (storedMovies) {
-      setMovies(JSON.parse(storedMovies));
-    }
-  }, []);
-
   useEffect(() => {
     const fetchMovies = async () => {
       const moviesData = await fetchMoviesByKeyword(query);
@@ -26,13 +17,16 @@ const Movies = () => {
         return alert('No movies by your query');
       }
       setMovies(moviesData);
-      localStorage.setItem('movies', JSON.stringify(moviesData)); // сохраняем список фильмов в localStorage
     };
     if (query === '') {
       return;
     }
     fetchMovies();
   }, [query]);
+
+  //////////////
+
+  /////////////////////////////
 
   const handleFormSubmit = query => {
     setQuery(query);
@@ -44,8 +38,12 @@ const Movies = () => {
       <div>
         <Searchbar onSubmit={handleFormSubmit} />
       </div>
-
-      <MoviesList movies={movies} location={location} />
+      {movies.length > 0 ? (
+        <MoviesList movies={movies} location={location} />
+      ) : (
+        <p>No movies found</p>
+      )}
+      {/* <MoviesList movies={movies} location={location} /> */}
     </div>
   );
 };
