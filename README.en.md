@@ -86,3 +86,12 @@ export default Searchbar;
 request'); setSearch(''); return;}
 
 // setPrevSearch(search); // const [prevSearch, setPrevSearch] = useState('');
+
+<!-- /////////если поиск сразу по инпуту/////////////////// -->
+
+    // добавляем параметр поиска в строку запроса с условием
+    if (event.currentTarget.value === '') {
+      setSearchParams({});
+    } else {
+      setSearchParams({ query: event.currentTarget.value });
+    }
