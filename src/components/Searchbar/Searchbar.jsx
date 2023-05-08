@@ -8,18 +8,10 @@ const Searchbar = ({ onSubmit }) => {
   const [prevSearch, setPrevSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const movieName = searchParams.get('query');
-  //   console.log(movieName);
-  //   console.log(searchParams);
+  //   const movieName = searchParams.get('query');
 
   const handleChange = event => {
     setSearch(event.currentTarget.value.toLowerCase());
-    // добавляем параметр поиска в строку запроса с условием
-    if (event.currentTarget.value.toLowerCase() === '') {
-      setSearchParams({});
-    } else {
-      setSearchParams({ query: event.currentTarget.value.toLowerCase() });
-    }
   };
 
   const handleSubmit = event => {
@@ -36,10 +28,9 @@ const Searchbar = ({ onSubmit }) => {
       return;
     }
 
-    //  console.log(searchParams);
-
-    onSubmit(movieName); // props из App которому мbl передаем state из єтого компонента в state App
+    setSearchParams({ query: search }); // записываем поисковый запрос в хук useSearchParams
     setPrevSearch(search);
+    onSubmit(search); // передаем поисковый запрос в функцию onSubmit
     setSearch(''); // reset
   };
 
