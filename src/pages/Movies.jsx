@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import Searchbar from 'components/Searchbar/Searchbar';
 import fetchMoviesByKeyword from 'services/fetchMoviesByKeyword';
 import MoviesList from 'components/MoviesList/MoviesList';
+import { InfinitySpin } from 'react-loader-spinner';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
 
   // получаем значение поискового запроса из хука useSearchParams,
   // в коториьlй мьl передали из handleFormSubmit -> из Serchbar - handleSubmit - onSubmit(search);
@@ -15,6 +17,7 @@ const Movies = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
+        setIsLoading(true); // показываем loader
         const moviesData = await fetchMoviesByKeyword(query);
 
         if (moviesData.length === 0) {
@@ -25,6 +28,8 @@ const Movies = () => {
       } catch (error) {
         console.error(error);
         alert('Something went wrong');
+      } finally {
+        setIsLoading(false); // скрываем loader
       }
     };
 
@@ -45,7 +50,13 @@ const Movies = () => {
         <Searchbar onSubmit={handleFormSubmit} />
       </div>
 
-      <MoviesList movies={movies} />
+      {isLoading ? (
+        <div className="loader">
+          <InfinitySpin width="200" color="#4fa94d" />
+        </div>
+      ) : (
+        <MoviesList movies={movies} />
+      )}
     </div>
   );
 };
