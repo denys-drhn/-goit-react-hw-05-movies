@@ -9,6 +9,7 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // получаем значение поискового запроса из хука useSearchParams,
   // в коториьlй мьl передали из handleFormSubmit -> из Serchbar - handleSubmit - onSubmit(search);
@@ -26,8 +27,7 @@ const Movies = () => {
 
         setMovies(moviesData);
       } catch (error) {
-        console.error(error);
-        alert('Something went wrong');
+        setError(error);
       } finally {
         setIsLoading(false); // скрываем loader
       }
@@ -57,6 +57,7 @@ const Movies = () => {
       ) : (
         <MoviesList movies={movies} />
       )}
+      {error && <p>Something went wrong...</p>}
     </div>
   );
 };
